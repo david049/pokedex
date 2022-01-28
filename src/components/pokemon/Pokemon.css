@@ -1,7 +1,7 @@
 .pokemon {
     border: 1px solid black;
     border-radius: 20px;
-    background-color: red;
+    background-image: radial-gradient(white, red);
     width: 300px;
     display: flex;
     flex-direction: column;

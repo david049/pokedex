@@ -21,13 +21,16 @@ const Pokemon = ({ idn }) => {
         if (pokemon !== null && 'name' in pokemon) {
             setload(false)
         }
+        console.log(pokemon)
     }, [pokemon])
     return (
         <div className='pokemon'>
         {loading ? "loading..." : 
         <>
             <img src={pokemon.sprites.other.dream_world.front_default} alt="could not find" />
+            
             <div className='info'>
+            <h4>#{idn}</h4>
              <h3>{pokemon.name}</h3>
              <p>{pokemon.types[0].type.name}
              {!pokemon.types[1] ? "": " "+pokemon.types[1].type.name }</p>
