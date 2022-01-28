@@ -6,18 +6,6 @@ body {
     background: rgb(233, 148, 148);
 }
 
-.search {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    flex-direction: column;
-}
-
-.search input {
-    width: 50%;
-}
-
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }

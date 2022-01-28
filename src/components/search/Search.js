@@ -1,6 +1,7 @@
 import React from 'react'
 import Pokemon from '../pokemon/Pokemon'
 import { useState } from 'react'
+import './Search.css'
 const Search = () => {
     const [text, setText] = useState("")
     const [clicked, setClicked] = useState(false)
