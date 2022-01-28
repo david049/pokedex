@@ -1,5 +1,5 @@
 import React from 'react'
-import Pokemon from './Pokemon'
+import Pokemon from '../pokemon/Pokemon'
 import { useState } from 'react'
 const Search = () => {
     const [text, setText] = useState("")

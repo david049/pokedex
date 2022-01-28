@@ -6,35 +6,6 @@ body {
     background: rgb(233, 148, 148);
 }
 
-.pokemon img {
-    border: 1px solid black;
-    background-color: white;
-    width: 200px;
-    height: 200px;
-}
-
-.pokemon {
-    border: 1px solid black;
-    border-radius: 20px;
-    background-color: red;
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-transform: capitalize;
-    padding-top: 20px;
-    text-align: center;
-    margin: 10px 10px 10px 0;
-}
-
-.container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
 .search {
     display: flex;
     align-items: center;
@@ -45,17 +16,6 @@ body {
 
 .search input {
     width: 50%;
-}
-
-.buttons {
-    display: flex;
-    justify-content: center;
-}
-
-.buttons button {
-    width: 200px;
-    height: 50px;
-    margin: 20px;
 }
 
 code {

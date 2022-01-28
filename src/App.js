@@ -1,11 +1,11 @@
-import NormalPage from "./components/NormalPage";
-import Search from "./components/Search";
-
-
+import NormalPage from "./components/normalpage/NormalPage";
+import Search from "./components/search/Search";
+//import PokemonWithSearch from "./components/pokemon/PokemonWithSearch";
 function App() {
   return (
     <>
     <Search />
+    {/*<PokemonWithSearch />*/}
     <NormalPage />
     </>
   );
