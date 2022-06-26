@@ -1,5 +1,5 @@
 import React from 'react'
-import Pokemon from '../pokemon/Pokemon';
+import Pokemon from '../Pokemon/Pokemon';
 import './PokemonList.css'
 const PokemonList = ({ initial }) => {
     let pokemon = []

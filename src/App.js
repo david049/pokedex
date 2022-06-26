@@ -1,5 +1,5 @@
-import NormalPage from "./components/normalpage/NormalPage";
-import Search from "./components/search/Search";
+import NormalPage from "./components/NormalPage/NormalPage";
+import Search from "./components/Search/Search";
 //import PokemonWithSearch from "./components/pokemon/PokemonWithSearch";
 function App() {
   return (

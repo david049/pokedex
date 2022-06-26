@@ -1,5 +1,5 @@
 import React from 'react'
-import PokemonList from '../pokemonlist/PokemonList';
+import PokemonList from '../PokemonList/PokemonList';
 import { useState } from 'react';
 import './NormalPage.css'
 const NormalPage = () => {
