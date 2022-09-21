@@ -10,13 +10,16 @@ import {
   LOAD_SET,
   LOAD_POKEMON,
 } from './constants';
-const pokeApi = 'https://pokeapi.co/api/v2/pokemon/';
+const pokeApi = 'https://pokeapi.co/api/v2/pokemon';
 
 function* loadSet({ type, payload }) {
   try {
-    const response = yield call(axios.get(pokeApi+payload.index));
-    yield put(loadCurrentSetSuccess((response.data)));
-    console.log(response.data);
+    const response = yield call(axios, { method: 'GET', url:
+      pokeApi+'?limit=20&offset='+payload.index },
+    );
+    yield put(loadCurrentSetSuccess(response.data.results));
+    console.log(response);
+    console.log(type);
   } catch (err) {
     yield put(loadCurrentSetFailure(err));
   }
@@ -24,7 +27,7 @@ function* loadSet({ type, payload }) {
 
 function* loadPokemon({ type, payload }) {
   try {
-    const response = yield call(axios.get(pokeApi+payload.name));
+    const response = yield call(axios.get(pokeApi+'/'+payload.name));
     yield put(loadCurrentPokemonSuccess((response.data)));
     console.log(response.data);
   } catch (err) {

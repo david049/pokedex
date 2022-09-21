@@ -4,17 +4,23 @@ const getCurrentPokemon = (state) => state.currentPokemon;
 const getCurrentSet = (state) => state.pokedex;
 
 const getCurrentPokemonData =
-    createSelector(getCurrentPokemon, (currentState) => currentState.pokemon);
+    createSelector(getCurrentPokemon,
+      (currentState) => currentState && currentState.pokemon);
 const getCurrentSetData =
-    createSelector(getCurrentPokemon, (currentState) => currentState.set);
+    createSelector(getCurrentPokemon,
+      (currentState) => currentState && currentState.set);
 const getCurrentPokemonLoading =
-    createSelector(getCurrentPokemon, (currentState) => currentState.isLoading);
+    createSelector(getCurrentPokemon,
+      (currentState) => currentState && currentState.isLoading);
 const getCurrentSetLoading =
-    createSelector(getCurrentSet, (currentState) => currentState.isLoading);
+    createSelector(getCurrentSet, (currentState) => currentState &&
+    currentState.isLoading);
 const getCurrentPokemonError =
-    createSelector(getCurrentPokemon, (currentState) => currentState.hasError);
+    createSelector(getCurrentPokemon, (currentState) =>
+      currentState && currentState.hasError);
 const getCurrentSetError =
-    createSelector(getCurrentSet, (currentState) => currentState.hasError);
+    createSelector(getCurrentSet, (currentState) =>
+      currentState && currentState.hasError);
 
 export {
   getCurrentPokemonData,

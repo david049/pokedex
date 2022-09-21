@@ -69,7 +69,7 @@ const Pokemon = ({ idn }) => {
 };
 
 Pokemon.propTypes = {
-  idn: PropTypes.number,
+  idn: PropTypes.string,
 };
 
 export default Pokemon;

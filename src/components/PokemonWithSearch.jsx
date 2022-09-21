@@ -3,7 +3,6 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useEffect } from 'react';
 import styled from 'styled-components';
-import './Pokemon.css';
 // taking from pokemon api
 
 const PokemonImage = styled.img`
@@ -35,6 +34,8 @@ const PokemonWithSearch = () => {
     }).catch((err) => {
       setErrored(true);
     });
+
+
     return () => {
       cancel = true;
     };

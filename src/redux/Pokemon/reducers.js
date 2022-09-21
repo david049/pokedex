@@ -26,15 +26,15 @@ export const pokemonReducer = (state=INITIAL_STATE, { type, payload }) => {
   case LOAD_POKEMON:
     return setLoadPokemon(state);
   case LOAD_POKEMON_SUCCESS:
-    return setLoadPokemonSuccess(state);
+    return setLoadPokemonSuccess(state, payload);
   case LOAD_POKEMON_FAILURE:
-    return setLoadPokemonFailure(state);
+    return setLoadPokemonFailure(state, payload);
   case LOAD_SET:
     return setLoadSet(state);
   case LOAD_SET_SUCCESS:
-    return setLoadSetSuccess(state);
+    return setLoadSetSuccess(state, payload);
   case LOAD_SET_FAILURE:
-    return setLoadSetFailure(state);
+    return setLoadSetFailure(state, payload);
   default:
     return state;
   }
@@ -68,6 +68,36 @@ const setLoadPokemonFailure = (state, payload) => ({
     pokemon: payload,
   },
 });
+
+const setLoadSet = (state) => ({
+  ...state,
+  pokedex: {
+    isLoading: true,
+    hasError: false,
+    set: [],
+  },
+});
+
+const setLoadSetSuccess = (state, payload) => ({
+  ...state,
+  pokedex: {
+    isLoading: false,
+    hasError: false,
+    set: payload.data,
+  },
+});
+
+const setLoadSetFailure = (state, payload) => {
+  return (
+    {
+      ...state,
+      pokedex: {
+        isLoading: false,
+        hasError: true,
+        set: null,
+      },
+    });
+};
 
 
 export default pokemonReducer;
