@@ -1,10 +1,12 @@
-import NormalPage from "./components/NormalPage";
-import Search from "./components/Search";
+import NormalPage from './components/NormalPage';
+import Search from './components/Search';
+import React from 'react';
+
 function App() {
   return (
     <>
-    <Search />
-    <NormalPage />
+      <Search />
+      <NormalPage />
     </>
   );
 }
