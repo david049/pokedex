@@ -25,7 +25,7 @@ const PokemonList = ({ initial }) => {
 };
 
 PokemonList.propTypes = {
-  initial: PropTypes.Number,
+  initial: PropTypes.number,
 };
 
 export default PokemonList;
