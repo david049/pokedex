@@ -7,10 +7,10 @@ import { loadCurrentPokemon,
 import { getCurrentPokemonData,
   getCurrentPokemonError,
   getCurrentPokemonLoading } from '../redux/Pokemon/selectors';
+
 const SearchInput = styled.input`
     width: 300px;
 `;
-
 const SearchContainer = styled.div`
   display: flex;
   flex-direction: row;

@@ -16,7 +16,8 @@ const PokemonList = ({ pokemon, loading }) => {
     <Container>
       {loading ? <h1>LOADING</h1> :
         (pokemon?.map((pokemon) => (
-          <Pokemon pokemonDetails={ pokemon } key={pokemon?.name} />
+          <Pokemon pokemonDetails={ pokemon }
+            key={pokemon?.name+pokemon?.weight} />
         )))}
     </Container>
   );

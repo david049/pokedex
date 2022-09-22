@@ -19,9 +19,18 @@ const ButtonContainer = styled.div`
     justify-content: center;
     margin: auto;
 `;
+const IndexInputContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: auto;
+`;
+const IndexInput = styled.input`
+  width: 80px;
+`;
 const NormalPage = () => {
   const dispatch = useDispatch();
   const [num, setNum] = useState(1);
+  const [indexSearch, setIndexSearch] = useState(1);
   const pokemon = useSelector(getCurrentSetData);
   const loading = useSelector(getCurrentSetLoading);
   useEffect(()=>{
@@ -39,6 +48,16 @@ const NormalPage = () => {
           setNum(num + 20);
         }}>Next</Button>
       </ButtonContainer>
+      <form onSubmit={(e)=>{
+        setNum(Number(indexSearch));
+        e.preventDefault();
+      }}>
+        <IndexInputContainer>
+          <IndexInput type="number" placeholder='Skip to'
+            onChange={(event) => (setIndexSearch(event.target.value))}/>
+          <button>Skip</button>
+        </IndexInputContainer>
+      </form>
       <PokemonList pokemon={pokemon} loading={loading}/>
     </>
   );
