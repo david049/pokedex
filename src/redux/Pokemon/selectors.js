@@ -1,14 +1,18 @@
 import { createSelector } from 'reselect';
 
-const getCurrentPokemon = (state) => state.currentPokemon;
-const getCurrentSet = (state) => state.pokedex;
+const getCurrentPokemon = (state) => state.pokemon.currentPokemon;
+const getCurrentSet = (state) => state.pokemon.pokedex;
 
 const getCurrentPokemonData =
     createSelector(getCurrentPokemon,
       (currentState) => currentState && currentState.pokemon);
 const getCurrentSetData =
-    createSelector(getCurrentPokemon,
-      (currentState) => currentState && currentState.set);
+    createSelector(getCurrentSet,
+      (currentState) => {
+        console.log('hi, im being called!');
+        console.log(currentState);
+        return currentState && currentState.set;
+      });
 const getCurrentPokemonLoading =
     createSelector(getCurrentPokemon,
       (currentState) => currentState && currentState.isLoading);

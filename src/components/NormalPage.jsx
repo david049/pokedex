@@ -2,6 +2,12 @@ import React from 'react';
 import PokemonList from './PokemonList';
 import { useState } from 'react';
 import styled from 'styled-components';
+import {
+  getCurrentSetLoading,
+  getCurrentSetData } from '../redux/Pokemon/selectors';
+import { loadCurrentSet } from '../redux/Pokemon/actions';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffectOnce } from 'react-use';
 
 const Button = styled.button`
     width: 200px;
@@ -13,7 +19,15 @@ const ButtonContainer = styled.div`
     justify-content: center;
 `;
 const NormalPage = () => {
+  const dispatch = useDispatch();
   const [num, setNum] = useState(0);
+  console.log('calling selector');
+  const pokemon = useSelector(getCurrentSetData);
+  console.log('selector value is ' + pokemon);
+  const loading = useSelector(getCurrentSetLoading);
+  useEffectOnce(()=>{
+    dispatch(loadCurrentSet({ index: 0 }));
+  });
   return (
     <>
       <ButtonContainer className='buttons'>
@@ -26,7 +40,7 @@ const NormalPage = () => {
           setNum(num + 20);
         }}>Next</Button>
       </ButtonContainer>
-      <PokemonList initial={num} />
+      <PokemonList pokemon={pokemon} loading={loading} />
     </>
   );
 };

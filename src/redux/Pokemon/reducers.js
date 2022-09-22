@@ -78,14 +78,18 @@ const setLoadSet = (state) => ({
   },
 });
 
-const setLoadSetSuccess = (state, payload) => ({
-  ...state,
-  pokedex: {
-    isLoading: false,
-    hasError: false,
-    set: payload.data,
-  },
-});
+const setLoadSetSuccess = (state, payload) => {
+  console.log('now updated!');
+  const newState = {
+    ...state,
+    pokedex: {
+      isLoading: false,
+      hasError: false,
+      set: [...state.pokedex.set, ...payload],
+    },
+  };
+  return newState;
+};
 
 const setLoadSetFailure = (state, payload) => {
   return (

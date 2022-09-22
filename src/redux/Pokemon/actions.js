@@ -26,14 +26,12 @@ export const loadCurrentPokemonFailure = (payload) => {
 };
 
 export const loadCurrentSet = (payload) => {
-  // console.log(payload);
   return {
     type: LOAD_SET,
     payload: payload,
   };
 };
 export const loadCurrentSetSuccess = (payload) => {
-  console.log(payload);
   return {
     type: LOAD_SET_SUCCESS,
     payload: payload,

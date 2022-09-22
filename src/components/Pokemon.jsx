@@ -25,13 +25,12 @@ const PokemonInfo = styled.div`
     text-align: center;
     margin: 10px 10px 10px 0;
 `;
-const Pokemon = ({ idn }) => {
-  const request = 'https://pokeapi.co/api/v2/pokemon/';
+const Pokemon = ({ url }) => {
   const [pokemon, setPokemon] = useState(null);
   const [loading, setload] = useState(true);
   const [errored, setErrored] = useState(false);
   useEffect(() => {
-    axios.get(request+idn).then((res) => {
+    axios.get(url).then((res) => {
       setPokemon(res.data);
       setErrored(false);
     }).catch((err) => {
@@ -39,7 +38,7 @@ const Pokemon = ({ idn }) => {
       setErrored(true);
       setPokemon(null);
     });
-  }, [idn]);
+  }, [url]);
   useEffect(() => {
     if (pokemon !== null && 'name' in pokemon) {
       setload(false);
@@ -69,7 +68,7 @@ const Pokemon = ({ idn }) => {
 };
 
 Pokemon.propTypes = {
-  idn: PropTypes.string,
+  url: PropTypes.string,
 };
 
 export default Pokemon;

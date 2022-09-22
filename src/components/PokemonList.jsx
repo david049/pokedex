@@ -2,12 +2,8 @@ import React from 'react';
 import Pokemon from './Pokemon';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import {
-  getCurrentSetLoading,
-  getCurrentSetData, getCurrentSetError } from '../redux/Pokemon/selectors';
-import { loadCurrentSet } from '../redux/Pokemon/actions';
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffectOnce } from 'react-use';
+
+
 const Container = styled.div`
     display: flex;
     align-items: center;
@@ -15,33 +11,20 @@ const Container = styled.div`
     flex-wrap: wrap;
 `;
 
-const PokemonList = ({ initial }) => {
-  const dispatch = useDispatch();
-  const set = useSelector(getCurrentSetData);
-  const loading = useSelector(getCurrentSetLoading);
-  const err = useSelector(getCurrentSetError);
-  console.log(set);
-  console.log(loading);
-  console.log(err);
-  const pokemon = [];
-  for (let i = 0; i < 20; i++) {
-    pokemon[i] = initial + i + 1;
-  }
-  useEffectOnce(()=>{
-    dispatch(loadCurrentSet({ index: 0 }));
-  });
+const PokemonList = ({ pokemon, loading }) => {
   return (
-    <Container className="container">
-      {pokemon.map((id) => (
-        <Pokemon idn={id} key={id} />
-      ))}
-      {err}
+    <Container>
+      {!loading &&
+      (pokemon?.map((pokemon) => (
+        <Pokemon url={pokemon?.url} key={pokemon?.name} />
+      )))}
     </Container>
   );
 };
 
 PokemonList.propTypes = {
-  initial: PropTypes.number,
+  pokemon: PropTypes.array,
+  loading: PropTypes.bool,
 };
 
 export default PokemonList;
