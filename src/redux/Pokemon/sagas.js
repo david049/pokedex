@@ -9,8 +9,6 @@ import {
 import {
   LOAD_SET,
   LOAD_POKEMON,
-  LOAD_SET_SUCCESS,
-  LOAD_SET_FAILURE,
 } from './constants';
 const pokeApi = 'https://pokeapi.co/api/v2/pokemon';
 

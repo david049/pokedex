@@ -14,10 +14,10 @@ const Container = styled.div`
 const PokemonList = ({ pokemon, loading }) => {
   return (
     <Container>
-      {!loading &&
-      (pokemon?.map((pokemon) => (
-        <Pokemon url={pokemon?.url} key={pokemon?.name} />
-      )))}
+      {loading ? <h1>LOADING</h1> :
+        (pokemon?.map((pokemon) => (
+          <Pokemon url={pokemon?.url} key={pokemon?.name} />
+        )))}
     </Container>
   );
 };
