@@ -17,6 +17,7 @@ const pokeApi = 'https://pokeapi.co/api/v2/pokemon';
 function* loadSet({ type, payload }) {
   try {
     const pokemon = [];
+    // unfortunately pokeapi doesn't allow one large call
     for (let i = payload.index; i < payload.index+POKEMONPERPAGE; i+=1) {
       const response = yield call(axios, { method: 'GET', url:
       pokeApi+'/'+i },
@@ -35,7 +36,6 @@ function* loadPokemon({ type, payload }) {
       { method: 'GET', url: pokeApi+'/'+payload });
     yield put(loadCurrentPokemonSuccess((response.data)));
   } catch (err) {
-    console.log(err);
     yield put(loadCurrentPokemonFailure(err));
   }
 }

@@ -8,9 +8,7 @@ const getCurrentPokemonData =
       (currentState) => currentState && currentState.pokemon);
 const getCurrentSetData =
     createSelector(getCurrentSet,
-      (currentState) => {
-        return currentState && currentState.set;
-      });
+      (currentState) => currentState && currentState.set);
 const getCurrentPokemonLoading =
     createSelector(getCurrentPokemon,
       (currentState) => currentState && currentState.isLoading);

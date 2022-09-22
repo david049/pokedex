@@ -77,40 +77,32 @@ const setLoadSet = (state) => ({
   },
 });
 
-const setLoadSetSuccess = (state, payload) => {
-  const newState = {
-    ...state,
-    pokedex: {
-      isLoading: false,
-      hasError: false,
-      set: [...state.pokedex.set, ...payload],
-    },
-  };
-  return newState;
-};
+const setLoadSetSuccess = (state, payload) => ({
+  ...state,
+  pokedex: {
+    isLoading: false,
+    hasError: false,
+    set: [...state.pokedex.set, ...payload],
+  },
+});
 
-const setLoadSetFailure = (state, payload) => {
-  return (
-    {
-      ...state,
-      pokedex: {
-        isLoading: false,
-        hasError: true,
-        set: null,
-      },
-    });
-};
+const setLoadSetFailure = (state, payload) => ({
+  ...state,
+  pokedex: {
+    isLoading: false,
+    hasError: true,
+    set: null,
+  },
+});
 
-const setClearCurrentPokemon = (state, payload) => {
-  return (
-    {
-      ...state,
-      currentPokemon: {
-        isLoading: false,
-        hasError: false,
-        pokemon: null,
-      },
-    });
-};
+const setClearCurrentPokemon = (state, payload) =>({
+  ...state,
+  currentPokemon: {
+    isLoading: false,
+    hasError: false,
+    pokemon: null,
+  },
+});
+
 
 export default pokemonReducer;
