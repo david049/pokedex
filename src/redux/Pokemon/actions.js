@@ -38,8 +38,6 @@ export const loadCurrentSetSuccess = (payload) => {
   };
 };
 export const loadCurrentSetFailure = (payload) => {
-  console.log('bad error');
-  console.log(payload);
   return {
     type: LOAD_SET_FAILURE,
     payload: payload,

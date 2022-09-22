@@ -34,7 +34,6 @@ const Pokemon = ({ url }) => {
       setPokemon(res.data);
       setErrored(false);
     }).catch((err) => {
-      console.log(err);
       setErrored(true);
       setPokemon(null);
     });

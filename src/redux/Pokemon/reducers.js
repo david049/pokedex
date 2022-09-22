@@ -79,7 +79,6 @@ const setLoadSet = (state) => ({
 });
 
 const setLoadSetSuccess = (state, payload) => {
-  console.log('now updated!');
   const newState = {
     ...state,
     pokedex: {

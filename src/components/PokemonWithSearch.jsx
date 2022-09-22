@@ -11,9 +11,7 @@ const PokemonImage = styled.img`
     width: 200px;
     height: 200px;
 `;
-// TODO: FIX SEARCH FUNCTION, HOOK UP TO REDUX
-//  perhaps either submit on blur, or make a form to
-//  submit on button press/enter keydown...
+
 const PokemonWithSearch = () => {
   const request = 'https://pokeapi.co/api/v2/pokemon/';
   const [pokemon, setPokemon] = useState(null);
@@ -50,7 +48,7 @@ const PokemonWithSearch = () => {
         <>
           <PokemonImage src={pokemon.sprites.other.dream_world.front_default}
             alt="could not find" />
-          <div className='info'>
+          <div>
             <h3>{pokemon.name}</h3>
             <p>{pokemon.types[0].type.name}
               {!pokemon.types[1] ? '': ' '+pokemon.types[1].type.name }</p>

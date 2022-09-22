@@ -20,9 +20,7 @@ const ButtonContainer = styled.div`
 const NormalPage = () => {
   const dispatch = useDispatch();
   const [num, setNum] = useState(0);
-  console.log('calling selector');
   const pokemon = useSelector(getCurrentSetData);
-  console.log('selector value is ' + pokemon);
   const loading = useSelector(getCurrentSetLoading);
   useEffect(()=>{
     dispatch(loadCurrentSet({ index: num }));
