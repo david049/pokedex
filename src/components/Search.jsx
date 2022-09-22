@@ -29,7 +29,9 @@ const Search = () => {
   const error = useSelector(getCurrentPokemonError);
   const change = (change) => {
     setText(change);
-    dispatch(clearCurrentPokemon());
+    if (pokemon || error) {
+      dispatch(clearCurrentPokemon());
+    }
   };
   return (
     <Container>
