@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PokemonList from './PokemonList';
-import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import {
   getCurrentSetLoading,
@@ -14,19 +13,23 @@ const Button = styled.button`
     margin: 20px;
     background-image: radial-gradient(white, red);
 `;
+
 const ButtonContainer = styled.div`
     display: flex;
     justify-content: center;
     margin: auto;
 `;
+
 const IndexInputContainer = styled.div`
   display: flex;
   justify-content: center;
   margin: auto;
 `;
+
 const IndexInput = styled.input`
   width: 80px;
 `;
+
 const NormalPage = () => {
   const dispatch = useDispatch();
   const [num, setNum] = useState(1);
@@ -42,6 +45,8 @@ const NormalPage = () => {
         <Button onClick={() => {
           if (num >= 20) {
             setNum(num - 20);
+          } else {
+            setNum(1);
           };
         }}>Back</Button>
         <Button onClick={() => {
@@ -49,7 +54,9 @@ const NormalPage = () => {
         }}>Next</Button>
       </ButtonContainer>
       <form onSubmit={(e)=>{
-        setNum(Number(indexSearch));
+        if (Number(indexSearch) > 0) {
+          setNum(Number(indexSearch));
+        }
         e.preventDefault();
       }}>
         <IndexInputContainer>
