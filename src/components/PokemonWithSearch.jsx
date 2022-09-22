@@ -11,10 +11,9 @@ const PokemonImage = styled.img`
     width: 200px;
     height: 200px;
 `;
-const SubmitButton = styled.button`
-
-`;
 // TODO: FIX SEARCH FUNCTION, HOOK UP TO REDUX
+//  perhaps either submit on blur, or make a form to
+//  submit on button press/enter keydown...
 const PokemonWithSearch = () => {
   const request = 'https://pokeapi.co/api/v2/pokemon/';
   const [pokemon, setPokemon] = useState(null);
@@ -47,7 +46,6 @@ const PokemonWithSearch = () => {
   return (
     <div className='pokemon'>
       <input type="text" onChange={(event) => (setText(event.target.value))}/>
-      <SubmitButton />
       {(loading || typeof(pokemon.name !== undefined) ) ? 'loading...' :
         <>
           <PokemonImage src={pokemon.sprites.other.dream_world.front_default}
