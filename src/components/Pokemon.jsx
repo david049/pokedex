@@ -1,6 +1,4 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
@@ -78,64 +76,49 @@ const InfoContainer = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-const Pokemon = ({ url }) => {
-  const [pokemon, setPokemon] = useState(null);
-  const [loading, setload] = useState(true);
-  const [errored, setErrored] = useState(false);
-  useEffect(() => {
-    axios.get(url).then((res) => {
-      setPokemon(res.data);
-      setErrored(false);
-    }).catch((err) => {
-      setErrored(true);
-      setPokemon(null);
-    });
-  }, [url]);
-  useEffect(() => {
-    if (pokemon !== null && 'name' in pokemon) {
-      setload(false);
-    }
-  }, [pokemon]);
-  if (!pokemon) {
+
+const Pokemon = ({ pokemonDetails }) => {
+  const { name, id, sprites, types, weight, height } = pokemonDetails;
+  if (!name) {
     return null;
   }
-  const image = (pokemon) => {
-    if (!!pokemon.sprites.other.dream_world.front_default) {
-      return pokemon.sprites.other.dream_world.front_default;
+
+  const image = (sprites) => {
+    if (!!sprites.other.dream_world.front_default) {
+      return sprites.other.dream_world.front_default;
     }
-    if (!!pokemon.sprites.other['official-artwork'].front_default) {
-      return pokemon.sprites.other['official-artwork'].front_default;
+    if (!!sprites.other['official-artwork'].front_default) {
+      return sprites.other['official-artwork'].front_default;
     }
-    return pokemon.sprites.front_default;
+    return sprites.front_default;
   };
   return (
     <PokemonInfo>
-      {loading ? 'loading...' :
+      {!name ? 'loading...' :
         <>
-          <PokemonImage src={image(pokemon)}
+          <PokemonImage src={image(sprites)}
             alt="could not find" />
           <InfoContainer>
-            <NumberContainer> #{pokemon.id}</NumberContainer>
-            <h3>{pokemon.name}</h3>
+            <NumberContainer> #{id}</NumberContainer>
+            <h3>{name}</h3>
             <TypeContainer>
-              <Type color={pokemon.types[0].type.name}>
-                {pokemon.types[0].type.name}</Type>
-              {!pokemon.types[1] ? null: <Type
-                color={pokemon.types[1].type.name}>
-                {pokemon.types[1].type.name}</Type> }
+              <Type color={types[0].type.name}>
+                {types[0].type.name}</Type>
+              {!types[1] ? null: <Type
+                color={types[1].type.name}>
+                {types[1].type.name}</Type> }
             </TypeContainer>
-            <p>Weight: {pokemon.weight/10}kg</p>
-            <p>Height: {pokemon.height*10}cm</p>
+            <p>Weight: {weight/10}kg</p>
+            <p>Height: {height*10}cm</p>
           </InfoContainer>
         </>
       }
-      {errored ? <><br/>Could not find pokemon</> : ''}
     </PokemonInfo>
   );
 };
-
+// name, sprites, id, type, weight, height
 Pokemon.propTypes = {
-  url: PropTypes.string,
+  pokemonDetails: PropTypes.object,
 };
 
 export default Pokemon;

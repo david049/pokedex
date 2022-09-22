@@ -10,14 +10,20 @@ import {
   LOAD_SET,
   LOAD_POKEMON,
 } from './constants';
+const POKEMONPERPAGE = 21;
+
 const pokeApi = 'https://pokeapi.co/api/v2/pokemon';
 
 function* loadSet({ type, payload }) {
   try {
-    const response = yield call(axios, { method: 'GET', url:
-      pokeApi+'?limit=21&offset='+payload.index },
-    );
-    yield put(loadCurrentSetSuccess(response.data.results));
+    const pokemon = [];
+    for (let i = payload.index; i < payload.index+POKEMONPERPAGE; i+=1) {
+      const response = yield call(axios, { method: 'GET', url:
+      pokeApi+'/'+i },
+      );
+      pokemon.push(response.data);
+    }
+    yield put(loadCurrentSetSuccess(pokemon));
   } catch (err) {
     yield put(loadCurrentSetFailure(err));
   }

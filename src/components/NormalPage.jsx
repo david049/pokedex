@@ -21,7 +21,7 @@ const ButtonContainer = styled.div`
 `;
 const NormalPage = () => {
   const dispatch = useDispatch();
-  const [num, setNum] = useState(0);
+  const [num, setNum] = useState(1);
   const pokemon = useSelector(getCurrentSetData);
   const loading = useSelector(getCurrentSetLoading);
   useEffect(()=>{
