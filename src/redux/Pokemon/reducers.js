@@ -4,7 +4,8 @@ import {
   LOAD_POKEMON_FAILURE,
   LOAD_SET,
   LOAD_SET_SUCCESS,
-  LOAD_SET_FAILURE } from './constants';
+  LOAD_SET_FAILURE,
+  CLEAR_CURRENT_POKEMON } from './constants';
 
 const INITIAL_STATE = {
   pokedex: {
@@ -14,7 +15,6 @@ const INITIAL_STATE = {
     hasError: false,
   },
   currentPokemon: {
-    name: '',
     isLoading: false,
     hasError: false,
     pokemon: null,
@@ -35,6 +35,8 @@ export const pokemonReducer = (state=INITIAL_STATE, { type, payload }) => {
     return setLoadSetSuccess(state, payload);
   case LOAD_SET_FAILURE:
     return setLoadSetFailure(state, payload);
+  case CLEAR_CURRENT_POKEMON:
+    return setClearCurrentPokemon(state);
   default:
     return state;
   }
@@ -43,7 +45,6 @@ export const pokemonReducer = (state=INITIAL_STATE, { type, payload }) => {
 const setLoadPokemon = (state) => ({
   ...state,
   currentPokemon: {
-    name: '',
     isLoading: true,
     hasError: false,
   },
@@ -52,7 +53,6 @@ const setLoadPokemon = (state) => ({
 const setLoadPokemonSuccess = (state, payload) => ({
   ...state,
   currentPokemon: {
-    name: '',
     isLoading: false,
     hasError: false,
     pokemon: payload,
@@ -62,10 +62,9 @@ const setLoadPokemonSuccess = (state, payload) => ({
 const setLoadPokemonFailure = (state, payload) => ({
   ...state,
   currentPokemon: {
-    name: '',
     isLoading: false,
     hasError: true,
-    pokemon: payload,
+    pokemon: null,
   },
 });
 
@@ -102,5 +101,16 @@ const setLoadSetFailure = (state, payload) => {
     });
 };
 
+const setClearCurrentPokemon = (state, payload) => {
+  return (
+    {
+      ...state,
+      currentPokemon: {
+        isLoading: false,
+        hasError: false,
+        pokemon: null,
+      },
+    });
+};
 
 export default pokemonReducer;

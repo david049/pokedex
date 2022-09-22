@@ -31,9 +31,11 @@ function* loadSet({ type, payload }) {
 
 function* loadPokemon({ type, payload }) {
   try {
-    const response = yield call(axios.get(pokeApi+'/'+payload.name));
+    const response = yield call(axios,
+      { method: 'GET', url: pokeApi+'/'+payload });
     yield put(loadCurrentPokemonSuccess((response.data)));
   } catch (err) {
+    console.log(err);
     yield put(loadCurrentPokemonFailure(err));
   }
 }

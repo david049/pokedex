@@ -1,10 +1,11 @@
 import {
   LOAD_POKEMON,
   LOAD_POKEMON_SUCCESS,
-  LOAD_POKEMON_FAILURE, // THESE ARE HERE FOR FUTURE UPDATE, MAYBE MODAL...
+  LOAD_POKEMON_FAILURE,
   LOAD_SET,
   LOAD_SET_SUCCESS,
-  LOAD_SET_FAILURE } from './constants';
+  LOAD_SET_FAILURE,
+  CLEAR_CURRENT_POKEMON } from './constants';
 
 export const loadCurrentPokemon = (payload) => {
   return {
@@ -18,6 +19,7 @@ export const loadCurrentPokemonSuccess = (payload) => {
     payload,
   };
 };
+
 export const loadCurrentPokemonFailure = (payload) => {
   return {
     type: LOAD_POKEMON_FAILURE,
@@ -28,20 +30,25 @@ export const loadCurrentPokemonFailure = (payload) => {
 export const loadCurrentSet = (payload) => {
   return {
     type: LOAD_SET,
-    payload: payload,
+    payload,
   };
 };
 export const loadCurrentSetSuccess = (payload) => {
   return {
     type: LOAD_SET_SUCCESS,
-    payload: payload,
+    payload,
   };
 };
 export const loadCurrentSetFailure = (payload) => {
   return {
     type: LOAD_SET_FAILURE,
-    payload: payload,
+    payload,
   };
 };
 
-
+export const clearCurrentPokemon = (payload) => {
+  return {
+    type: CLEAR_CURRENT_POKEMON,
+    payload,
+  };
+};

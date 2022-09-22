@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Pokemon from './Pokemon';
-import { useState } from 'react';
 import styled from 'styled-components';
-
-
+import { useDispatch, useSelector } from 'react-redux';
+import { loadCurrentPokemon,
+  clearCurrentPokemon } from '../redux/Pokemon/actions';
+import { getCurrentPokemonData,
+  getCurrentPokemonError,
+  getCurrentPokemonLoading } from '../redux/Pokemon/selectors';
 const SearchInput = styled.input`
     width: 300px;
 `;
@@ -19,19 +22,21 @@ const Container = styled.div`
 `;
 
 const Search = () => {
-  const request = 'https://pokeapi.co/api/v2/pokemon/';
+  const dispatch = useDispatch();
   const [text, setText] = useState('');
-  const [showPokemon, setShowPokemon] = useState(false);
+  const pokemon = useSelector(getCurrentPokemonData);
+  const loading = useSelector(getCurrentPokemonLoading);
+  const error = useSelector(getCurrentPokemonError);
   const change = (change) => {
-    setShowPokemon(false);
     setText(change);
+    dispatch(clearCurrentPokemon());
   };
   return (
     <Container>
       <h1>Pokédex</h1>
       <form onSubmit={(e)=>{
         e.preventDefault();
-        setShowPokemon(true);
+        dispatch(loadCurrentPokemon(text));
       }}>
         <SearchContainer>
           <SearchInput type="text" placeholder='Pokemon Name'
@@ -39,7 +44,9 @@ const Search = () => {
           <button>Search</button>
         </SearchContainer>
       </form>
-      {showPokemon && <Pokemon url={request+text.toLowerCase()} /> }
+      {pokemon && <Pokemon pokemonDetails={pokemon} /> }
+      {loading && <h2>Loading...</h2>}
+      {error && <h2>ERROR FINDING POKEMON</h2>}
     </Container>
   );
 };
