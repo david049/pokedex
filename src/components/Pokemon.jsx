@@ -1,7 +1,6 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
@@ -98,16 +97,23 @@ const Pokemon = ({ url }) => {
     }
   }, [pokemon]);
   if (!pokemon) {
-    return 'Could not find...';
+    return null;
   }
-  console.log(pokemon);
+  const image = (pokemon) => {
+    if (!!pokemon.sprites.other.dream_world.front_default) {
+      return pokemon.sprites.other.dream_world.front_default;
+    }
+    if (!!pokemon.sprites.other['official-artwork'].front_default) {
+      return pokemon.sprites.other['official-artwork'].front_default;
+    }
+    return pokemon.sprites.front_default;
+  };
   return (
     <PokemonInfo>
       {loading ? 'loading...' :
         <>
-          <PokemonImage src={
-            pokemon.sprites.other['official-artwork'].front_default}
-          alt="could not find" />
+          <PokemonImage src={image(pokemon)}
+            alt="could not find" />
           <InfoContainer>
             <NumberContainer> #{pokemon.id}</NumberContainer>
             <h3>{pokemon.name}</h3>
