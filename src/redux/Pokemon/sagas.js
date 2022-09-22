@@ -15,7 +15,7 @@ const pokeApi = 'https://pokeapi.co/api/v2/pokemon';
 function* loadSet({ type, payload }) {
   try {
     const response = yield call(axios, { method: 'GET', url:
-      pokeApi+'?limit=20&offset='+payload.index },
+      pokeApi+'?limit=21&offset='+payload.index },
     );
     yield put(loadCurrentSetSuccess(response.data.results));
   } catch (err) {
