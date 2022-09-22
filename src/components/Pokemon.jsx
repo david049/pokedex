@@ -98,15 +98,16 @@ const Pokemon = ({ url }) => {
     }
   }, [pokemon]);
   if (!pokemon) {
-    return null;
+    return 'Could not find...';
   }
   console.log(pokemon);
   return (
     <PokemonInfo>
       {loading ? 'loading...' :
         <>
-          <PokemonImage src={pokemon.sprites.other.dream_world.front_default}
-            alt="could not find" />
+          <PokemonImage src={
+            pokemon.sprites.other['official-artwork'].front_default}
+          alt="could not find" />
           <InfoContainer>
             <NumberContainer> #{pokemon.id}</NumberContainer>
             <h3>{pokemon.name}</h3>
