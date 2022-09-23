@@ -5,3 +5,5 @@ export const LOAD_SET_FAILURE = 'LOAD_SET_FAILURE';
 export const LOAD_POKEMON_SUCCESS = 'LOAD_POKEMON_SUCCESS';
 export const LOAD_POKEMON_FAILURE = 'LOAD_POKEMON_FAILURE';
 export const CLEAR_CURRENT_POKEMON = 'CLEAR_CURRENT_POKEMON';
+export const POKEMON_PER_PAGE = 15;
+export const API_LINK = 'https://pokeapi.co/api/v2/pokemon';

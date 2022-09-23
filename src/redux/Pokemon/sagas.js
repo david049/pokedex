@@ -9,18 +9,18 @@ import {
 import {
   LOAD_SET,
   LOAD_POKEMON,
+  API_LINK,
 } from './constants';
-const POKEMONPERPAGE = 21;
+import { POKEMON_PER_PAGE } from '../../constants';
 
-const pokeApi = 'https://pokeapi.co/api/v2/pokemon';
 
 function* loadSet({ type, payload }) {
   try {
     const pokemon = [];
     // unfortunately pokeapi doesn't allow one large call
-    for (let i = payload.index; i < payload.index+POKEMONPERPAGE; i+=1) {
+    for (let i = payload.index; i < payload.index+POKEMON_PER_PAGE; i+=1) {
       const response = yield call(axios, { method: 'GET', url:
-      pokeApi+'/'+i },
+      `${API_LINK}/${i}` },
       );
       pokemon.push(response.data);
     }
@@ -33,7 +33,7 @@ function* loadSet({ type, payload }) {
 function* loadPokemon({ type, payload }) {
   try {
     const response = yield call(axios,
-      { method: 'GET', url: pokeApi+'/'+payload });
+      { method: 'GET', url: `${API_LINK}'/'${payload}` });
     yield put(loadCurrentPokemonSuccess((response.data)));
   } catch (err) {
     yield put(loadCurrentPokemonFailure(err));

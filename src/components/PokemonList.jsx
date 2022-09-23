@@ -9,6 +9,8 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    max-width: 1236px;
+    margin: auto;
 `;
 
 const PokemonList = ({ pokemon, loading }) => {

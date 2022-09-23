@@ -6,6 +6,7 @@ import {
   getCurrentSetData } from '../redux/Pokemon/selectors';
 import { loadCurrentSet } from '../redux/Pokemon/actions';
 import { useSelector, useDispatch } from 'react-redux';
+import { POKEMON_PER_PAGE } from '../constants';
 
 const Button = styled.button`
     width: 150px;
@@ -43,14 +44,14 @@ const NormalPage = () => {
     <>
       <ButtonContainer className='buttons'>
         <Button onClick={() => {
-          if (num >= 20) {
-            setNum(num - 20);
+          if (num >= POKEMON_PER_PAGE) {
+            setNum(num - POKEMON_PER_PAGE);
           } else {
             setNum(1);
           };
         }}>Back</Button>
         <Button onClick={() => {
-          setNum(num + 20);
+          setNum(num + POKEMON_PER_PAGE);
         }}>Next</Button>
       </ButtonContainer>
       <form onSubmit={(e)=>{
